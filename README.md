@@ -1,7 +1,7 @@
 # 2D JavaScript Game
 
 A simple 2D game developed using JavaScript and the DOM API.  
-Created as a 2nd-year academic project.
+Created as a 2nd year academic project.
 
 ## Features
 - Player movement

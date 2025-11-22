@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Catch The Object</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Your styles -->
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+<div id="wrapper">
+    <h1>Catch The embers</h1>
+    <p>Use ← and → to move the flask.</p>
+
+    <div id="hud">
+        <span id="scoreText">Score: 0</span>
+        <span id="bestScoreText">Best: 0</span>
+        <span id="livesText">Lives: 3</span>
+    </div>
+
+    <div id="gameArea">
+
+        <div class="fog" aria-hidden="true"></div>
+
+        <div id="player"></div>
+        <div class="flash bonus" aria-hidden="true"></div>
+        <div class="flash life" aria-hidden="true"></div>
+        <div class="flash damage" aria-hidden="true"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="gameOverModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center p-4">
+            <h2>Game Over</h2>
+            <p id="finalScore"></p>
+            <p id="finalBest"></p>
+            <button id="restartBtn" class="btn btn-primary mt-3">Restart</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="Script.js" defer></script>
+</body>
+</html>

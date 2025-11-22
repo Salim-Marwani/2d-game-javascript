@@ -1,0 +1,129 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
+
+:root{
+    --hud-color: #eadac6;
+    --accent: #a37b4b;
+    --damage-red: rgba(200,30,30,0.12);
+    --bonus-white: rgba(255,255,255,0.10);
+    --life-gold: rgba(255,220,120,0.10);
+}
+
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(#0f0f10, #0a0a0a);
+    color: var(--hud-color);
+    font-family: 'Cinzel', Georgia, serif;
+    overflow: hidden;
+}
+
+h1 { margin-top: 28px; font-size: 40px; text-shadow: 1px 1px 6px #000; }
+p { margin: 6px 0 18px 0; opacity: 0.9; }
+
+/* HUD */
+#hud {
+    width: 460px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: var(--hud-color);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Wrapper */
+#wrapper { display: flex; flex-direction: column; align-items: center; }
+
+/* Game area with painterly background */
+#gameArea {
+    width: 420px;
+    height: calc(100vh - 180px);
+    background: url("assets/background.png") center/cover no-repeat;
+    border: 3px solid #2f2f2f;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6), inset 0 0 40px rgba(0,0,0,0.12);
+}
+
+
+
+/* Player */
+#player {
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    bottom: 20px;
+    left: calc(50% - 27px);
+    background-image: url("assets/flask.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 60;
+}
+
+/* Objects */
+.bonus, .malus, .life {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 50;
+}
+.bonus { background-image: url("assets/bonus.png"); }
+.malus { background-image: url("assets/malus.png"); }
+.life  { background-image: url("assets/life.png"); }
+
+.particle { position: absolute; width: 6px; height: 6px; border-radius: 2px; opacity: 0.95; pointer-events: none; z-index: 55; }
+.floatingText { position: absolute; font-weight: 700; font-size: 18px; pointer-events: none; z-index: 70; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+
+/* Flash overlays */
+.flash {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    inset: 0;
+    pointer-events: none;
+    z-index: 200;
+    opacity: 0;
+}
+.flash.bonus { background: var(--bonus-white); }
+.flash.life  { background: var(--life-gold); }
+.flash.damage { background: var(--damage-red); }
+.flash.show { animation: flashIn 420ms linear; opacity: 1; }
+@keyframes flashIn {
+    0% { opacity: 0.95; }
+    100% { opacity: 0; }
+}
+
+/* Shake */
+.shake { animation: shakeIt 280ms ease-in-out; }
+@keyframes shakeIt {
+    0% { transform: translateX(0px); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0px); }
+}
+
+/* Modal */
+#gameOverModal .modal-content { background: rgba(0,0,0,0.82); border-radius: 14px; border: 2px solid #3a3a3a; padding: 18px; }
+#gameOverModal h2 { color: #ff9b6b; font-size: 30px; margin-bottom: 6px; }
+#gameOverModal p { color: var(--hud-color); font-size: 18px; }
+
+/* Responsive */
+@media (max-width: 520px) {
+    #gameArea { width: 92vw; height: 66vh; }
+    #hud { width: 92vw; font-size: 16px; }
+}

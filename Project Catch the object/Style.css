@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
 
 :root{
@@ -26,23 +25,15 @@ body {
 h1 { margin-top: 28px; font-size: 40px; text-shadow: 1px 1px 6px #000; }
 p { margin: 6px 0 18px 0; opacity: 0.9; }
 
-/* HUD */
 #hud {
     width: 460px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
     font-size: 20px;
     margin-bottom: 8px;
-    color: var(--hud-color);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
 }
 
-/* Wrapper */
-#wrapper { display: flex; flex-direction: column; align-items: center; }
-
-/* Game area with painterly background */
+/* Game Area */
 #gameArea {
     width: 420px;
     height: calc(100vh - 180px);
@@ -51,10 +42,8 @@ p { margin: 6px 0 18px 0; opacity: 0.9; }
     border-radius: 14px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.6), inset 0 0 40px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
 }
-
-
 
 /* Player */
 #player {
@@ -63,66 +52,82 @@ p { margin: 6px 0 18px 0; opacity: 0.9; }
     position: absolute;
     bottom: 20px;
     left: calc(50% - 27px);
-    background-image: url("assets/flask.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: url("assets/flask.png") center/contain no-repeat;
     z-index: 60;
 }
 
-/* Objects */
+/* Falling Objects */
 .bonus, .malus, .life {
     width: 48px;
     height: 48px;
     position: absolute;
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
     z-index: 50;
 }
 .bonus { background-image: url("assets/bonus.png"); }
 .malus { background-image: url("assets/malus.png"); }
 .life  { background-image: url("assets/life.png"); }
 
-.particle { position: absolute; width: 6px; height: 6px; border-radius: 2px; opacity: 0.95; pointer-events: none; z-index: 55; }
-.floatingText { position: absolute; font-weight: 700; font-size: 18px; pointer-events: none; z-index: 70; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+/* Particles */
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    z-index: 55;
+}
 
-/* Flash overlays */
+/* Floating Text */
+.floatingText {
+    position: absolute;
+    font-size: 18px;
+    font-weight: 700;
+    z-index: 70;
+}
+
+/* Flash Overlays */
 .flash {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    display: block;
     inset: 0;
+    opacity: 0;
     pointer-events: none;
     z-index: 200;
-    opacity: 0;
 }
 .flash.bonus { background: var(--bonus-white); }
 .flash.life  { background: var(--life-gold); }
 .flash.damage { background: var(--damage-red); }
-.flash.show { animation: flashIn 420ms linear; opacity: 1; }
+
+.flash.show {
+    animation: flashIn 420ms linear;
+}
 @keyframes flashIn {
-    0% { opacity: 0.95; }
-    100% { opacity: 0; }
+    from { opacity: 0.95; }
+    to   { opacity: 0; }
 }
 
-/* Shake */
-.shake { animation: shakeIt 280ms ease-in-out; }
-@keyframes shakeIt {
-    0% { transform: translateX(0px); }
-    25% { transform: translateX(-4px); }
-    50% { transform: translateX(3px); }
-    75% { transform: translateX(-2px); }
-    100% { transform: translateX(0px); }
+/* Start Screen */
+.start-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.75);
+    z-index: 9999;
 }
 
-/* Modal */
-#gameOverModal .modal-content { background: rgba(0,0,0,0.82); border-radius: 14px; border: 2px solid #3a3a3a; padding: 18px; }
-#gameOverModal h2 { color: #ff9b6b; font-size: 30px; margin-bottom: 6px; }
-#gameOverModal p { color: var(--hud-color); font-size: 18px; }
+.start-card {
+    width: 420px;
+    padding: 26px;
+    text-align: center;
+    background: #111;
+    border-radius: 14px;
+    border: 1px solid #333;
+    box-shadow: 0 0 30px rgba(0,0,0,0.6);
+}
+.start-card h1 { color: #ffb77b; }
 
-/* Responsive */
 @media (max-width: 520px) {
     #gameArea { width: 92vw; height: 66vh; }
     #hud { width: 92vw; font-size: 16px; }

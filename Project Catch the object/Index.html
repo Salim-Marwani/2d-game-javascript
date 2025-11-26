@@ -3,15 +3,39 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Catch The Object</title>
+    <title>Catch The Embers</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Your styles -->
     <link rel="stylesheet" href="Style.css">
 </head>
 <body>
+
+<!-- START SCREEN -->
+<div id="startScreen" class="start-screen">
+    <div class="start-card">
+        <h1>Catch The Embers</h1>
+        <p class="muted">Move with ← →. Catch embers, avoid skulls. Rare blue souls restore life.</p>
+
+        <div class="mb-3">
+            <label class="form-label">Difficulty</label>
+            <div>
+                <input type="radio" name="difficulty" value="easy"> Easy
+                &nbsp;&nbsp;
+                <input type="radio" name="difficulty" value="normal" checked> Normal
+                &nbsp;&nbsp;
+                <input type="radio" name="difficulty" value="hard"> Hard
+            </div>
+        </div>
+
+        <button id="startBtn" class="btn btn-primary mt-2">Start</button>
+
+        <p style="margin-top:14px; font-size:13px; opacity:0.9;">Best: <span id="startBest">0</span></p>
+    </div>
+</div>
+
+<!-- MAIN GAME UI -->
 <div id="wrapper">
     <h1>Catch The embers</h1>
     <p>Use ← and → to move the flask.</p>
@@ -23,16 +47,15 @@
     </div>
 
     <div id="gameArea">
-
-        <div class="fog" aria-hidden="true"></div>
-
         <div id="player"></div>
-        <div class="flash bonus" aria-hidden="true"></div>
-        <div class="flash life" aria-hidden="true"></div>
-        <div class="flash damage" aria-hidden="true"></div>
+
+        <div class="flash bonus"></div>
+        <div class="flash life"></div>
+        <div class="flash damage"></div>
     </div>
 </div>
 
+<!-- GAME OVER MODAL -->
 <div class="modal fade" id="gameOverModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-center p-4">

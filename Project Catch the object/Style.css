@@ -1,14 +1,16 @@
+/* Import the game font */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
 
+/* Main color variables */
 :root{
     --hud-color: #eadac6;
     --accent: #a37b4b;
-    --damage-red: rgba(200,30,30,0.12);
-    --bonus-white: rgba(255,255,255,0.10);
-    --life-gold: rgba(255,220,120,0.10);
 }
 
+/* Basic reset */
 * { box-sizing: border-box; }
+
+/* Page layout + background */
 body {
     margin: 0;
     padding: 0;
@@ -22,9 +24,20 @@ body {
     overflow: hidden;
 }
 
-h1 { margin-top: 28px; font-size: 40px; text-shadow: 1px 1px 6px #000; }
-p { margin: 6px 0 18px 0; opacity: 0.9; }
+/* Title styling */
+h1 {
+    margin-top: 28px;
+    font-size: 40px;
+    text-shadow: 1px 1px 6px #000;
+}
 
+/* Small text */
+p {
+    margin: 6px 0 18px 0;
+    opacity: 0.9;
+}
+
+/* Score/lives/best section */
 #hud {
     width: 460px;
     display: flex;
@@ -33,7 +46,7 @@ p { margin: 6px 0 18px 0; opacity: 0.9; }
     margin-bottom: 8px;
 }
 
-/* Game Area */
+/* Main play area */
 #gameArea {
     width: 420px;
     height: calc(100vh - 180px);
@@ -56,7 +69,7 @@ p { margin: 6px 0 18px 0; opacity: 0.9; }
     z-index: 60;
 }
 
-/* Falling Objects */
+/* Falling items */
 .bonus, .malus, .life {
     width: 48px;
     height: 48px;
@@ -65,6 +78,7 @@ p { margin: 6px 0 18px 0; opacity: 0.9; }
     background-repeat: no-repeat;
     z-index: 50;
 }
+
 .bonus { background-image: url("assets/bonus.png"); }
 .malus { background-image: url("assets/malus.png"); }
 .life  { background-image: url("assets/life.png"); }
@@ -78,7 +92,7 @@ p { margin: 6px 0 18px 0; opacity: 0.9; }
     z-index: 55;
 }
 
-/* Floating Text */
+/* Floating text */
 .floatingText {
     position: absolute;
     font-size: 18px;
@@ -86,27 +100,7 @@ p { margin: 6px 0 18px 0; opacity: 0.9; }
     z-index: 70;
 }
 
-/* Flash Overlays */
-.flash {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 200;
-}
-.flash.bonus { background: var(--bonus-white); }
-.flash.life  { background: var(--life-gold); }
-.flash.damage { background: var(--damage-red); }
-
-.flash.show {
-    animation: flashIn 420ms linear;
-}
-@keyframes flashIn {
-    from { opacity: 0.95; }
-    to   { opacity: 0; }
-}
-
-/* Start Screen */
+/* Start screen overlay */
 .start-screen {
     position: fixed;
     inset: 0;
@@ -117,6 +111,7 @@ p { margin: 6px 0 18px 0; opacity: 0.9; }
     z-index: 9999;
 }
 
+/* Start screen card */
 .start-card {
     width: 420px;
     padding: 26px;
@@ -126,9 +121,49 @@ p { margin: 6px 0 18px 0; opacity: 0.9; }
     border: 1px solid #333;
     box-shadow: 0 0 30px rgba(0,0,0,0.6);
 }
-.start-card h1 { color: #ffb77b; }
 
-@media (max-width: 520px) {
-    #gameArea { width: 92vw; height: 66vh; }
-    #hud { width: 92vw; font-size: 16px; }
+.start-card h1 {
+    color: #ffb77b;
+}
+
+/* Game Over modal styling */
+.modal-content {
+    background: #111 !important;
+    color: #eadac6 !important;
+    border-radius: 14px;
+    border: 1px solid #2e2e2e;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(0,0,0,0.85);
+    font-family: 'Cinzel', serif;
+}
+
+.modal-content h2,
+.modal-content h3 {
+    color: #ffb77b !important;
+    text-shadow: 0 0 6px rgba(255,183,123,0.45);
+    margin-bottom: 18px;
+}
+
+.modal-content p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* Restart button */
+#restartBtn {
+    background-color: #3d7bff !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 12px 0;
+    font-size: 20px;
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+}
+
+#restartBtn:hover {
+    background-color: #2b64d6 !important;
 }
